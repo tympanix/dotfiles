@@ -1,0 +1,42 @@
+#!/usr/bin/env bash
+
+########################################
+# Installation of oh-my-zsh            #
+########################################
+
+DIR="$(dirname "${BASH_SOURCE[0]}")"
+
+# Must be called as part of dotfiles installation
+[[ ! $DOTFILES ]] && exit 1
+[[ ! $LOG ]] && LOG="/dev/null"
+
+readonly OHMYZSH=""
+
+install_zsh () {
+  # Test to see if zshell is installed.  If it is:
+  info "Setting up oh-my-zsh"
+  if [ -f /bin/zsh -o -f /usr/bin/zsh ]; then
+    # Install Oh My Zsh if it isn't already present
+    if [[ ! -d $dir/oh-my-zsh/ ]]; then
+      sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+      #>> "$LOG" 2>&1 \
+      #&& success "Installed oh-my-zsh" \
+      #|| error "Could not install oh-my-zsh"
+    fi
+    # Set the default shell to zsh if it isn't currently set to zsh
+    if [[ ! $(echo $SHELL) == $(which zsh) ]]; then
+      chsh -s $(which zsh)
+    fi
+  else
+    error "Could not install oh-my-zsh missing zsh dependency"
+  fi
+}
+
+symlink_files() {
+  cp -as "$DOTFILES/zsh/"* "$HOME/.oh-my-zsh/" \
+    && success "Symlinked zsh themes" \
+    || error "Could not symlink oh-my-zsh files"
+}
+
+install_zsh
+symlink_files
