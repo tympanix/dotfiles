@@ -9,31 +9,19 @@ DIR="$(dirname "${BASH_SOURCE[0]}")"
 # Must be called as part of dotfiles installation
 [[ ! $DOTFILES ]] && exit 1
 
-PLUGINS=(
-  'https://github.com/vim-airline/vim-airline-themes'
-  'https://github.com/vim-airline/vim-airline'
-)
-
 install_pathogen() {
-  mkdir -p ~/.vim/autoload ~/.vim/bundle && \
-    curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
+  curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim \
+    && success "Installed pathogen" \
+    || error "Could not install pathogen"
 }
 
 symlink_files() {
-  mkd "$HOME/.vim" 
-  cp -as "$DOTFILES/vim/"* "$HOME/.vim/" \
-    && success "Symlinked vim themes" \
-    || error "Could not symlink vim files"
+  mv -f "$HOME/.vim" "$BACKUP" 2> /dev/null
+  ln -s "$DOTFILES/vim" "$HOME/.vim" \
+    && success "Symlinked vim folder" \
+    || error "Could not symlink vim folder"
 }
 
-install_plugins() {
-  for p in ${PLUGINS[@]}; do
-    git clone "$p" "$HOME/.vim/bundle/$(basename $p)" > /dev/null 2>&1 \
-      && success "Installed vim plugin $(basename $p)" \
-      || error "Could not install $(basename $p)"
-  done  
-}
-
-install_pathogen
 symlink_files
-install_plugins
+install_pathogen
+# install_plugins

@@ -14,7 +14,6 @@ ZSH=~/.oh-my-zsh
 
 install_zsh () {
   # Test to see if zshell is installed.  If it is:
-  info "Setting up oh-my-zsh"
   if [ -f /bin/zsh -o -f /usr/bin/zsh ]; then
     # Install Oh My Zsh if it isn't already present
     if [[ ! -d $dir/oh-my-zsh/ ]]; then

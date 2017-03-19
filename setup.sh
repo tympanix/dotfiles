@@ -12,12 +12,12 @@ LOG="${DOTFILES}/logfile.log"
 
 source "${INSTALL}/util.sh"
 
-dir_backup=~/dotfiles_old             # old dotfiles backup directory
+BACKUP=~/dotfiles_old             # old dotfiles backup directory
 
-# Get current dir (so run this script from anywhere)
-
+# Export variables for submodules
 export DOTFILES
 export LOG
+export BACKUP
 
 # Warn user this script will overwrite current dotfiles
 while true; do
@@ -30,7 +30,7 @@ while true; do
 done
 
 # Create dotfiles_old in homedir
-mkdir -p $dir_backup
+mkdir -p $BACKUP
 
 # Change to the dotfiles directory
 cd $DOTFILES
@@ -131,7 +131,7 @@ main() {
 
 install_init_files() {
   for f in ${DOTFILES}/init/*.sh; do
-    info "Running init file $f"
+    info "Installing using $(basename $f)"
     . "$f"
   done
 }
