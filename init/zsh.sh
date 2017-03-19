@@ -10,7 +10,7 @@ DIR="$(dirname "${BASH_SOURCE[0]}")"
 [[ ! $DOTFILES ]] && exit 1
 [[ ! $LOG ]] && LOG="/dev/null"
 
-readonly OHMYZSH=""
+ZSH=~/.oh-my-zsh
 
 install_zsh () {
   # Test to see if zshell is installed.  If it is:
@@ -18,10 +18,9 @@ install_zsh () {
   if [ -f /bin/zsh -o -f /usr/bin/zsh ]; then
     # Install Oh My Zsh if it isn't already present
     if [[ ! -d $dir/oh-my-zsh/ ]]; then
-      sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-      #>> "$LOG" 2>&1 \
-      #&& success "Installed oh-my-zsh" \
-      #|| error "Could not install oh-my-zsh"
+      git clone --depth=1 https://github.com/robbyrussell/oh-my-zsh.git "$ZSH" > /dev/null 2>&1 \
+      && success "Installed oh-my-zsh" \
+      || error "Could not install oh-my-zsh"
     fi
     # Set the default shell to zsh if it isn't currently set to zsh
     if [[ ! $(echo $SHELL) == $(which zsh) ]]; then

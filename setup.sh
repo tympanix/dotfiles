@@ -63,7 +63,6 @@ declare -a FILES_TO_SYMLINK=(
   'shell/vimrc'
   'shell/wgetrc'
   'shell/tmux.conf'
-  'shell/plugins.vim'
 
   'git/gitattributes'
   'git/gitconfig'
@@ -158,8 +157,8 @@ install_dependecies() {
 # fi
 
 install_dependecies
-install_init_files
 main
+install_init_files
 
 ###############################################################################
 # Atom                                                                        #
