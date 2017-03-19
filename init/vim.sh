@@ -9,10 +9,9 @@ DIR="$(dirname "${BASH_SOURCE[0]}")"
 # Must be called as part of dotfiles installation
 [[ ! $DOTFILES ]] && exit 1
 
-install_vundle() {
-  git clone "https://github.com/VundleVim/Vundle.vim.git" "$HOME/.vim/bundle/Vundle.vim" > /dev/null \
-    && success "Installed vundle for vim" \
-    || error "Could not install vundle for vim"
+install_pathogen() {
+  mkdir -p ~/.vim/autoload ~/.vim/bundle && \
+    curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
 }
 
 symlink_files() {
@@ -23,10 +22,9 @@ symlink_files() {
 }
 
 install_plugins() {
-  vim +PluginInstall +qall \
-    && success "Installed vim plugins" \
-    || error "Could not install vim plugins"
+  git clone https://github.com/vim-airline/vim-airline ~/.vim/bundle/vim-airline
+  git clone https://github.com/vim-airline/vim-airline-themes ~/.vim/bundle/vim-airline-themes
 }
-install_vundle
+install_pathogen
 symlink_files
 install_plugins
