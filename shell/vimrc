@@ -8,10 +8,10 @@ set t_Co=256
 
 " Use the Solarized Dark theme
 set background=dark
-colorscheme solarized
+colorscheme OceanicNext
 let g:solarized_termcolors=256
 let g:solarized_termtrans=1
-let g:airline_theme="solarized"
+let g:airline_theme="oceanicnext"
 
 " Use no compatible mode
 set nocompatible
