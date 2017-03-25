@@ -6,11 +6,11 @@ filetype plugin indent on
 " Use 256 colors in vim
 set t_Co=256
 
-" Use the Solarized Dark theme
-set background=dark
+" Set theme for vim
 colorscheme OceanicNext
-let g:solarized_termcolors=256
-let g:solarized_termtrans=1
+
+" Set airline settings
+let g:airline_powerline_fonts=1
 let g:airline_theme="oceanicnext"
 
 " Use no compatible mode

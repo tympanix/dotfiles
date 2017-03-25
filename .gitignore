@@ -17,3 +17,4 @@ logfile.log
 
 vim/autoload/*
 tmux/plugins/*
+*.swp
