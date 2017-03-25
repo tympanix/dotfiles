@@ -63,6 +63,7 @@ declare -a FILES_TO_SYMLINK=(
   'shell/vimrc'
   'shell/wgetrc'
   'shell/tmux.conf'
+	'shell/tmux.theme'
 
   'git/gitattributes'
   'git/gitconfig'

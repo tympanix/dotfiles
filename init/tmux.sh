@@ -17,9 +17,14 @@ symlink_folder() {
 }
 
 install_tpm() {
-  git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm > /dev/null 2>&1 \
-    && success "Installed tmux plugin manager" \
-    || error "Could not install tmux plugin manager"
+  TPM="$HOME/.tmux/plugins/tpm"
+  if [ -d $TPM ]; then
+    success "Already installed tmux plugin manager"
+  else
+    git clone https://github.com/tmux-plugins/tpm $TPM >> $LOG 2>&1 \
+      && success "Installed tmux plugin manager" \
+      || error "Could not install tmux plugin manager"
+  fi
 }
 
 reload_tmux() {
