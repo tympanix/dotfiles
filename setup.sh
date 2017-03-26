@@ -39,15 +39,6 @@ cd $DOTFILES
 # Actual symlink stuff
 #
 
-
-# Atom editor settings
-info "Setting up atom"
-mv -f ~/.atom ~/dotfiles_old/ 2> /dev/null
-ln -s $HOME/dotfiles/atom ~/.atom \
-  && success "Copied atom folder" \
-  || error "Could not symlink atom directory"
-
-
 declare -a FILES_TO_SYMLINK=(
 
   'shell/aliases'
@@ -141,6 +132,8 @@ install_init_files() {
 install_dependecies() {
   if [ -f /usr/bin/apt-get ]; then
     source "$DOTFILES/install/apt.sh" 
+  elif [ -f /usr/local/bin/brew ]; then
+    source "$DOTFILES/install/brew.sh"
   else
     error "You distribution is not supported"
     exit 1
