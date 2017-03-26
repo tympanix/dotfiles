@@ -15,6 +15,18 @@ install_pathogen() {
     || error "Could not install pathogen"
 }
 
+install_vundle() {
+  VUNDLE="$HOME/.vim/bundle/Vundle.vim"
+  if [ -d $VUNDLE ]; then
+    success "Vundle already installed"
+  else 
+    git clone https://github.com/VundleVim/Vundle.vim.git \
+    $HOME/.vim/bundle/Vundle.vim >> $LOG 2>&1 \
+      && success "Installed vundle" \
+      || error "Could not install vundle"
+  fi
+}
+
 symlink_files() {
   mv -f "$HOME/.vim" "$BACKUP" 2> /dev/null
   ln -s "$DOTFILES/vim" "$HOME/.vim" \
@@ -22,6 +34,13 @@ symlink_files() {
     || error "Could not symlink vim folder"
 }
 
+install_plugins() {
+  vim --noplugin -u $HOME/.vim/vundles.vim -N \"+set hidden\" \"+syntax on\" \
+    +PluginClean +PluginInstall! +qall > $LOG 2>&1 \
+    && success "Install all vim plugins" \
+    || error "Could not install vim plugins"
+}
+
 symlink_files
-install_pathogen
-# install_plugins
+install_vundle
+install_plugins

@@ -16,5 +16,6 @@ Thumbs.db
 logfile.log
 
 vim/autoload/*
+vim/bundle/*
 tmux/plugins/*
 *.swp

@@ -1,10 +1,17 @@
-" Pathogen setup
-execute pathogen#infect()
+" Use no compatible mode
+set nocompatible
+
+" Load vundles from plugin file
+if filereadable(expand("~/.vim/vundles.vim"))
+	source ~/.vim/vundles.vim
+endif
+
 syntax on
 filetype plugin indent on
 
 " Use 256 colors in vim
 set t_Co=256
+set background=dark
 
 " Set theme for vim
 colorscheme OceanicNext
@@ -13,8 +20,6 @@ colorscheme OceanicNext
 let g:airline_powerline_fonts=1
 let g:airline_theme="oceanicnext"
 
-" Use no compatible mode
-set nocompatible
 filetype plugin indent on
 
 " Use the OS clipboard by default (on versions compiled with `+clipboard`)
