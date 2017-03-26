@@ -17,7 +17,7 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'flazz/vim-colorschemes'
-Plugin 'mhartington/oceanic-next'
+" Plugin 'mhartington/oceanic-next'
 Plugin 'edkolev/tmuxline.vim'
 
 " All of your Plugins must be added before the following line

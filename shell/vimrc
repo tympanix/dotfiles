@@ -9,16 +9,19 @@ endif
 syntax on
 filetype plugin indent on
 
+let base16colorspace=256
+
 " Use 256 colors in vim
 set t_Co=256
 set background=dark
+" let g:base16_shell_path="$HOME/base16-builder/output/shell"
 
 " Set theme for vim
-colorscheme OceanicNext
+colorscheme base16-oceanicnext
 
 " Set airline settings
 let g:airline_powerline_fonts=1
-let g:airline_theme="oceanicnext"
+let g:airline_theme="base16"
 
 filetype plugin indent on
 
