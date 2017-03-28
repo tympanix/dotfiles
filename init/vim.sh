@@ -28,7 +28,13 @@ install_vundle() {
 }
 
 symlink_files() {
-  mv -f "$HOME/.vim" "$BACKUP" 2> /dev/null
+	if [[ -d "$HOME/.vim" ]]; then
+	  if [[ -L "$HOME/.vim" ]]; then
+      rm -f "$HOME/.vim" 2> /dev/null
+		else
+      mv -f "$HOME/.vim" "$BACKUP" 2> /dev/null
+		fi
+	fi
   ln -s "$DOTFILES/vim" "$HOME/.vim" \
     && success "Symlinked vim folder" \
     || error "Could not symlink vim folder"

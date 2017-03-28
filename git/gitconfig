@@ -121,14 +121,9 @@
 
 [color "status"]
 
-	added = yellow
-	changed = green
+	added = green
+	changed = blue
 	untracked = cyan
-
-[commit]
-
-	# https://help.github.com/articles/signing-commits-using-gpg/
-	gpgsign = true
 
 [diff]
 
@@ -180,3 +175,6 @@
 [url "git://gist.github.com/"]
 
 	insteadOf = "gist:"
+[user]
+	name = Tympanix
+	email = tympanix@gmail.com
