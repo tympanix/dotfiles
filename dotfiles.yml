@@ -1,0 +1,78 @@
+---
+- hosts: all
+
+  vars:
+    dotfiles_dir: "/usr/share/dotfiles"
+    zsh_dir: "/usr/share/oh-my-zsh"
+    zsh_theme: "robbyrussell"
+
+  tasks:
+  - name: "Install dependecies"
+    apt:
+      name: "{{item}}"
+      state: present
+    with_items:
+    - vim
+    - zsh
+    - curl
+    - git
+
+  - name: "Update dotfiles from git"
+    git:
+      repo: "https://github.com/Tympanix/dotfiles"
+      dest: "{{dotfiles_dir}}"
+
+  - name: "Symlink vim configuration"
+    file:
+      src: "{{dotfiles_dir}}/vim/{{item}}"
+      dest: "/etc/vim/{{item}}"
+      state: "link"
+    with_items:
+      - "autoload"
+      - "backups"
+      - "bundle"
+      - "colors"
+      - "swaps"
+      - "syntax"
+      - "undo"
+      - "vundles.vim"
+
+  - name: "Symlink vimrc"
+    file:
+      src: "{{dotfiles_dir}}/shell/vimrc"
+      dest: "/etc/vim/vimrc.local"
+      state: "link"
+
+  - name: "Install vundle plugin manager"
+    git:
+      repo: "https://github.com/VundleVim/Vundle.vim.git"
+      dest: "/etc/vim/bundle/Vundle.vim"
+
+  - name: "Install vim plugins"
+    shell: vim -i NONE -c VundleUpdate -c quitall
+
+  - name: "Install oh-my-zsh"
+    git:
+      repo: "https://github.com/robbyrussell/oh-my-zsh.git"
+      dest: "{{zsh_dir}}"
+
+  - name: "Create global zshrc"
+    template:
+      src: "{{dotfiles_dir}}/ansible/zshrc.j2"
+      dest: "/etc/zsh/zshrc"
+      force: yes
+
+  - name: "Symlink global profile"
+    file:
+      src: "{{dotfiles_dir}}/shell/{{item}}"
+      dest: "/etc/profile.d/{{item}}.sh"
+      state: "link"
+    with_items:
+      - "aliases"
+      - "functions"
+      - "exports"
+
+  - name: "Set default shell for root to zsh"
+    user:
+      name: root
+      shell: /bin/zsh
