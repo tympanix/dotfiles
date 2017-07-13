@@ -1,12 +1,37 @@
 " Use no compatible mode
 set nocompatible
 
+" Filetype off is required by vundle
+filetype off
+
 " Load vundles from plugin file
 if filereadable(expand("~/.vim/vundles.vim"))
+	" Set the runtime path to include Vundle and initialize
+	set rtp+=~/.vim/bundle/Vundle.vim
+	call vundle#begin()
+
+	" Load plugins
 	source ~/.vim/vundles.vim
+
+	" Load local bundles
+	if filereadable(expand("~/.vim/vundles.local"))
+		source ~/.vim/vundles.local
+	endif
+
+	" All of your Plugins must be added before the following line
+	call vundle#end()
+elseif filereadable("/etc/vim/vundles.vim")
+	" Set the runtime path to include Vundle and initialize
+	set rtp+=~/etc/vim/bundle/Vundle.vim
+	call vundle#begin()
+
+	" Load plugins
+	source "/etc/vim/vundles.vim"
+
+	" All of your Plugins must be added before the following line
+	call vundle#end()
 endif
 
-syntax on
 filetype plugin indent on
 
 " let base16colorspace=256
@@ -17,7 +42,7 @@ set background=dark
 " let g:base16_shell_path="$HOME/base16-builder/output/shell"
 
 " Set theme for vim
-colorscheme base16-oceanicnext 
+colorscheme base16-oceanicnext
 
 " Set airline settings
 let g:airline_powerline_fonts=1
