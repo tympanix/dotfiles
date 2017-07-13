@@ -175,6 +175,7 @@
 [url "git://gist.github.com/"]
 
 	insteadOf = "gist:"
+
 [user]
 	name = Tympanix
 	email = tympanix@gmail.com
