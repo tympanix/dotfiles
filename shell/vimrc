@@ -23,7 +23,7 @@ if filereadable(expand("~/.vim/vundles.vim"))
 elseif filereadable("/etc/vim/vundles.vim")
 	" Set the runtime path to include Vundle and initialize
 	set rtp+=/etc/vim/bundle/Vundle.vim
-	call vundle#begin()
+	call vundle#begin("/etc/vim/bundle/")
 
 	" Load plugins
 	source /etc/vim/vundles.vim
