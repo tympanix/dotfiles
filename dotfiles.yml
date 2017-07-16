@@ -1,6 +1,8 @@
 ---
 - hosts: all
 
+  become: yes
+
   vars:
     dotfiles_dir: "/usr/local/lib/dotfiles"
     zsh_dir: "/usr/local/lib/oh-my-zsh"
