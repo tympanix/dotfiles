@@ -2,8 +2,8 @@
 - hosts: all
 
   vars:
-    dotfiles_dir: "/usr/share/dotfiles"
-    zsh_dir: "/usr/share/oh-my-zsh"
+    dotfiles_dir: "/usr/local/lib/dotfiles"
+    zsh_dir: "/usr/local/lib/oh-my-zsh"
     zsh_theme: "robbyrussell"
 
   tasks:
