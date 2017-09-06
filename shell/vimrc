@@ -32,30 +32,32 @@ elseif filereadable("/etc/vim/vundles.vim")
 	call vundle#end()
 endif
 
+" add .vim folder to runtime (for neovim)
+set rtp+=~/.vim
+" use indentation plugin
 filetype plugin indent on
 
-" let base16colorspace=256
-
-" Use 256 colors in vim
+" use 256 colors in vim
 set t_Co=256
+" use dark background in vim
 set background=dark
-" let g:base16_shell_path="$HOME/base16-builder/output/shell"
 
 " Set theme for vim
 colorscheme base16-oceanicnext
 
-" Set airline settings
+" use powerline font in airline
 let g:airline_powerline_fonts=1
+" use base16 theme for airline
 let g:airline_theme="base16"
-
-filetype plugin indent on
+" set default indentation to two spaces
+set shiftwidth=2
+" show the width of TAB as two spaces
+set tabstop=2
 
 " Use the OS clipboard by default (on versions compiled with `+clipboard`)
 set clipboard=unnamed
 " Enhance command-line completion
 set wildmenu
-" Allow cursor keys in insert mode
-set esckeys
 " Allow backspace in insert mode
 set backspace=indent,eol,start
 " Optimize for fast terminal connections
@@ -96,8 +98,6 @@ set secure
 set number
 " Enable syntax highlighting
 syntax on
-" Make tabs as wide as two spaces
-set tabstop=2
 " Highlight searches
 set hlsearch
 " Ignore case of searches
@@ -124,6 +124,9 @@ set title
 set showcmd
 " Start scrolling three lines before the horizontal window border
 set scrolloff=3
+
+" Keybinding
+nnoremap <Leader>f :NERDTreeToggle<Enter>
 
 " Local config
 if filereadable($HOME . "/.vimrc.local")
