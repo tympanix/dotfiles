@@ -45,6 +45,7 @@ set background=dark
 " Set theme for vim
 colorscheme base16-oceanicnext
 
+let g:loaded_pyton_provider = 0
 " use powerline font in airline
 let g:airline_powerline_fonts=1
 " use base16 theme for airline
@@ -125,8 +126,44 @@ set showcmd
 " Start scrolling three lines before the horizontal window border
 set scrolloff=3
 
+" always insert mode for terminals
+autocmd BufWinEnter,WinEnter term://* startinsert
+
+" set update time of gitgutter to 250ms
+set updatetime=250
+
 " Keybinding
 nnoremap <Leader>f :NERDTreeToggle<Enter>
+nnoremap <Leader>o :Files<Enter>
+
+if has('nvim')
+	" Allow hitting <Esc> to switch to normal mode
+	tnoremap <Esc> <C-\><C-n>
+
+	" Alt+[hjkl] to navigate through windows in insert mode
+	tnoremap <A-h> <C-\><C-n><C-w>h
+	tnoremap <A-j> <C-\><C-n><C-w>j
+	tnoremap <A-k> <C-\><C-n><C-w>k
+	tnoremap <A-l> <C-\><C-n><C-w>l
+
+	" macOS navigation keys
+	tnoremap « <C-\><C-n><C-w>h
+	tnoremap ‹ <C-\><C-n><C-w>j
+	tnoremap ∆ <C-\><C-n><C-w>k
+	tnoremap ¬ <C-\><C-n><C-w>l
+endif
+
+" Alt+[hjkl] to navigate through windows in normal mode
+nnoremap <A-h> <C-w>h
+nnoremap <A-j> <C-w>j
+nnoremap <A-k> <C-w>k
+nnoremap <A-l> <C-w>l
+
+" macOS navigation keys
+nnoremap « <C-w>h
+nnoremap ‹ <C-w>j
+nnoremap ∆ <C-w>k
+nnoremap ¬ <C-w>l
 
 " Local config
 if filereadable($HOME . "/.vimrc.local")
