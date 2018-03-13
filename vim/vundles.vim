@@ -25,3 +25,4 @@ Plugin 'Yggdroot/indentLine'
 " Syntax & linting
 Plugin 'valloric/youcompleteme'
 Plugin 'mattn/emmet-vim'
+Plugin 'sheerun/vim-polyglot'
