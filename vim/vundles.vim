@@ -25,4 +25,6 @@ Plugin 'Yggdroot/indentLine'
 " Syntax & linting
 Plugin 'valloric/youcompleteme'
 Plugin 'mattn/emmet-vim'
+Plugin 'fatih/vim-go'
 Plugin 'sheerun/vim-polyglot'
+Plugin 'nsf/gocode', {'rtp': 'nvim/'}
