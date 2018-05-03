@@ -29,7 +29,7 @@ install_zsh () {
 			  && success "Changed default shell to zsh" \
 				|| error "Could not change shell to zsh"
 		else
-		  success "Default shell alreayd zsh"
+		  success "Default shell already zsh"
     fi
   else
     error "Could not install oh-my-zsh missing zsh dependency"
@@ -44,7 +44,7 @@ symlink_files() {
 
 source_zsh() {
   source "$HOME/.zshrc" \
-	  && success "Sources zshrc file" \
+	  && success "Sourced zshrc file" \
 		|| error "Could not source zshrc file"
 }
 
