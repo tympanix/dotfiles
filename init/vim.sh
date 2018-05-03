@@ -19,7 +19,7 @@ install_vundle() {
   VUNDLE="$HOME/.vim/bundle/Vundle.vim"
   if [ -d $VUNDLE ]; then
     success "Vundle already installed"
-  else 
+  else
     git clone https://github.com/VundleVim/Vundle.vim.git \
     $HOME/.vim/bundle/Vundle.vim >> $LOG 2>&1 \
       && success "Installed vundle" \
@@ -41,7 +41,7 @@ symlink_files() {
 }
 
 install_plugins() {
-  vim --noplugin -u $HOME/.vim/vundles.vim -N \"+set hidden\" \"+syntax on\" \
+  vim --noplugin -u $HOME/.vimrc -N \"+set hidden\" \"+syntax on\" \
     +PluginClean +PluginInstall! +qall > $LOG 2>&1 \
     && success "Install all vim plugins" \
     || error "Could not install vim plugins"
