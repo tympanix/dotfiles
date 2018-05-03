@@ -41,8 +41,7 @@ symlink_files() {
 }
 
 install_plugins() {
-  vim --noplugin -u $HOME/.vimrc -N \"+set hidden\" \"+syntax on\" \
-    +PluginClean +PluginInstall! +qall > $LOG 2>&1 \
+  vim --noplugin -i NONE -c PluginInstall -c quitall > $LOG 2>&1 \
     && success "Install all vim plugins" \
     || error "Could not install vim plugins"
 }
