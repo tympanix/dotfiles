@@ -10,14 +10,14 @@ DIR="$(dirname "${BASH_SOURCE[0]}")"
 [[ ! $DOTFILES ]] && exit 1
 
 symlink_folder() {
-	if [[ -L "$HOME/.tmux" && -d "$HOME/.tmux" ]]; then
-		success "Tmux already linked"
-	else
+  if [[ -L "$HOME/.tmux" && -d "$HOME/.tmux" ]]; then
+    success "Tmux already linked"
+  else
     mv -rf "$HOME/.tmux" "$BACKUP" 2> /dev/null
     ln -s "$DOTFILES/tmux" "$HOME/.tmux" > /dev/null \
       && success "Linked tmux folder" \
       || error "Could not link tmux folder"
-	fi
+  fi
 }
 
 install_tpm() {
